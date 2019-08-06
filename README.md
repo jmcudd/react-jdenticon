@@ -2,7 +2,7 @@ A basic wrapper around [Jdenticon](https://jdenticon.com/) for React.
 
 ### Usage
 
-```
+```javascript
 import React from 'react';
 import Jdenticon from 'react-jdenticon';
 
