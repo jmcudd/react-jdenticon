@@ -16,8 +16,8 @@ const Jdenticon = ({ value = 'test', size = '100%', config = {} }) => {
 };
 
 Jdenticon.propTypes = {
-  config: PropTypes.shapeOf({}),
+  config: PropTypes.shape({}),
   size: PropTypes.string,
-  value: PropTypes.string
+  value: PropTypes.string.isRequired
 };
 export default Jdenticon;
