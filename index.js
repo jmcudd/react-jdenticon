@@ -35,9 +35,9 @@ var Jdenticon = function Jdenticon(_ref) {
 };
 
 Jdenticon.propTypes = {
-  config: _propTypes["default"].shapeOf({}),
+  config: _propTypes["default"].shape({}),
   size: _propTypes["default"].string,
-  value: _propTypes["default"].string
+  value: _propTypes["default"].string.isRequired
 };
 var _default = Jdenticon;
 exports["default"] = _default;
