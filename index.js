@@ -19,12 +19,10 @@ var Jdenticon = function Jdenticon(_ref) {
   var _ref$value = _ref.value,
       value = _ref$value === void 0 ? 'test' : _ref$value,
       _ref$size = _ref.size,
-      size = _ref$size === void 0 ? '100%' : _ref$size,
-      _ref$config = _ref.config,
-      config = _ref$config === void 0 ? {} : _ref$config;
+      size = _ref$size === void 0 ? '100%' : _ref$size;
   var icon = (0, _react.useRef)(null);
   (0, _react.useEffect)(function () {
-    _jdenticon["default"].update(icon.current, value, config);
+    _jdenticon["default"].update(icon.current, value);
   }, [value]);
   return _react["default"].createElement("div", null, _react["default"].createElement("svg", {
     "data-jdenticon-value": value,
@@ -35,7 +33,6 @@ var Jdenticon = function Jdenticon(_ref) {
 };
 
 Jdenticon.propTypes = {
-  config: _propTypes["default"].shape({}),
   size: _propTypes["default"].string,
   value: _propTypes["default"].string.isRequired
 };

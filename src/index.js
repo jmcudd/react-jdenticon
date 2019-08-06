@@ -2,10 +2,10 @@ import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import jdenticon from 'jdenticon';
 
-const Jdenticon = ({ value = 'test', size = '100%', config = {} }) => {
+const Jdenticon = ({ value = 'test', size = '100%' }) => {
   const icon = useRef(null);
   useEffect(() => {
-    jdenticon.update(icon.current, value, config);
+    jdenticon.update(icon.current, value);
   }, [value]);
 
   return (
@@ -16,7 +16,6 @@ const Jdenticon = ({ value = 'test', size = '100%', config = {} }) => {
 };
 
 Jdenticon.propTypes = {
-  config: PropTypes.shape({}),
   size: PropTypes.string,
   value: PropTypes.string.isRequired
 };
