@@ -16,6 +16,8 @@
     "@babel/preset-react": "^7.0.0"
   },
   "dependencies": {
-    "prop-types": "^15.7.2"
+    "jdenticon": "^2.2.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6"
   }
 }
