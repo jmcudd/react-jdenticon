@@ -20,6 +20,10 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.0"
   },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/jmcudd/react-jdenticon"
+  },
   "keywords": [
     "react",
     "javascript",
