@@ -13,13 +13,16 @@
     "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0"
+    "@babel/preset-react": "^7.0.0",
+    "react": "^16.8.0"
   },
   "dependencies": {
     "jdenticon": "^2.2.0",
     "prop-types": "^15.7.2",
-    "react": "^16.8.0"
   },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  }
   "repository": {
     "type": "git",
     "url": "https://github.com/jmcudd/react-jdenticon"
