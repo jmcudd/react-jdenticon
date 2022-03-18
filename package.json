@@ -1,6 +1,6 @@
 {
   "name": "react-jdenticon",
-  "version": "0.0.9",
+  "version": "1.0.0",
   "description": "Basic wrapper around jdenticon",
   "main": "index.js",
   "scripts": {
@@ -10,18 +10,18 @@
   "author": "John Cudd",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "@babel/preset-react": "^7.0.0",
-    "react": "^16.8.0"
+    "@babel/cli": "^7.17.6",
+    "@babel/core": "^7.17.5",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "react": "^17.0.2"
   },
   "dependencies": {
-    "jdenticon": "^2.2.0",
-    "prop-types": "^15.7.2"
+    "jdenticon": "^3.1.1",
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
-    "react": "^16.8.0"
+    "react": "^17.0.2"
   },
   "repository": {
     "type": "git",
