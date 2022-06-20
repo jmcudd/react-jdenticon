@@ -3,9 +3,11 @@ export default function Jdenticon({
   size,
   style,
   config,
+  className,
 }: {
   value: string;
   size?: string;
   style?: React.CSSProperties;
+  className?: string;
   config?: import("jdenticon").JdenticonConfig;
-}): React.FC;
+}): JSX.Element;

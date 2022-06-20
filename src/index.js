@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import jdenticon from "jdenticon";
 
-function Jdenticon({ size = "100%", value, style, config }) {
+function Jdenticon({ size = "100%", value, style, className, config }) {
   // ref for icon svg
   const icon = useRef(null);
 
@@ -18,7 +18,7 @@ function Jdenticon({ size = "100%", value, style, config }) {
   }, [value]);
 
   return (
-    <div style={style}>
+    <div style={style} className={className}>
       <svg data-jdenticon-value={value} height={size} ref={icon} width={size} />
     </div>
   );
@@ -28,6 +28,7 @@ Jdenticon.propTypes = {
   value: PropTypes.string.isRequired,
   size: PropTypes.string,
   style: PropTypes.object,
+  className: PropTypes.string,
   config: PropTypes.object,
 };
 
