@@ -1,8 +1,9 @@
 {
   "name": "react-jdenticon",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "description": "Basic wrapper around jdenticon",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "./node_modules/.bin/babel src --out-file index.js"
@@ -14,6 +15,7 @@
     "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "@types/jdenticon": "^2.2.0",
     "react": "^17.0.2"
   },
   "dependencies": {
