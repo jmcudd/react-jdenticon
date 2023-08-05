@@ -9,9 +9,9 @@ const Jdenticon = ({ value = 'test', size = '100%' }) => {
   }, [value]);
 
   return (
-    <div>
+    <>
       <svg data-jdenticon-value={value} height={size} ref={icon} width={size} />
-    </div>
+    </>
   );
 };
 
