@@ -20,7 +20,7 @@ var Jdenticon = function Jdenticon(_ref) {
   (0, _react.useEffect)(function () {
     _jdenticon["default"].update(icon.current, value);
   }, [value]);
-  return /*#__PURE__*/_react["default"].createElement("div", null, /*#__PURE__*/_react["default"].createElement("svg", {
+  return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("svg", {
     "data-jdenticon-value": value,
     height: size,
     ref: icon,
