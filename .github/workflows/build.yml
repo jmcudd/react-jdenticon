@@ -15,3 +15,6 @@ jobs:
         run: npm ci
       - name: Build Package
         run: npm run build
+      - uses: stefanzweifel/git-auto-commit-action@v5 # commits the newly built index.js file
+        with:
+          commit_message: "ci: update index.js"
