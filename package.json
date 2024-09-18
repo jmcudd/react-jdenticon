@@ -4,8 +4,8 @@
   "description": "Basic wrapper around jdenticon",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "./node_modules/.bin/babel src --out-file index.js"
+    "build": "./node_modules/.bin/babel src --out-file index.js",
+    "test": "cypress run"
   },
   "author": "John Cudd",
   "license": "MIT",
@@ -14,6 +14,7 @@
     "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "cypress": "^13.14.2",
     "react": "^18.2.0"
   },
   "dependencies": {
@@ -27,12 +28,5 @@
     "type": "git",
     "url": "https://github.com/jmcudd/react-jdenticon"
   },
-  "keywords": [
-    "react",
-    "javascript",
-    "identicon",
-    "jdenticon",
-    "avatar",
-    "svg"
-  ]
+  "keywords": ["react", "javascript", "identicon", "jdenticon", "avatar", "svg"]
 }

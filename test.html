@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jdenticon Test</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+  <script src="index.js"></script>
+  <script>
+    const { createElement } = React;
+    const { render } = ReactDOM;
+    const Jdenticon = window.Jdenticon.default;
+    function Example() {
+      return createElement('div', null, [
+        createElement(Jdenticon, { size: '48', value: 'Hello World' }),
+        createElement(Jdenticon, { size: '48', value: 'React' }),
+        createElement(Jdenticon, { size: '48', value: 'GitHub' })
+      ]);
+    }
+    render(createElement(Example), document.getElementById('root'));
+  </script>
+</body>
+</html>
+
