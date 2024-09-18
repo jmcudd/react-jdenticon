@@ -93,8 +93,7 @@ jobs:
         script: |
           const { GITHUB_RUN_ID, GITHUB_REPOSITORY } = process.env;
           const artifactUrl = `https://github.com/${GITHUB_REPOSITORY}/suites/${GITHUB_RUN_ID}/artifacts`;
-          const checkRunId = context.runId;
-          await github.checks.create({
+          await github.rest.checks.create({
             owner: context.repo.owner,
             repo: context.repo.repo,
             name: 'Cypress Screenshots',
