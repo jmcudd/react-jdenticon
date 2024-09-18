@@ -16,7 +16,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
         node-version: '21'
     - name: Get current package version
@@ -43,7 +43,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
         node-version: '21'  
     - name: Install dependencies
@@ -68,7 +68,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
         node-version: '21' 
     - name: Install dependencies
