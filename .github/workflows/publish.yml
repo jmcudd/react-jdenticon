@@ -25,6 +25,7 @@ jobs:
     - name: Bump version
       run: npm version ${{ github.event.inputs.version }} --no-git-tag-version
     - name: Commit version change
+      if: github.event.inputs.dry_run != 'true'
       run: |
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
