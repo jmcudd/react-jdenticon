@@ -81,28 +81,3 @@ jobs:
       with:
         name: cypress-screenshots
         path: cypress/screenshots
-  screenshots:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - name: Create check run with screenshot links
-      uses: actions/github-script@v6
-      with:
-        script: |
-          const { GITHUB_RUN_ID, GITHUB_REPOSITORY } = process.env;
-          const artifactUrl = `https://github.com/${GITHUB_REPOSITORY}/suites/${GITHUB_RUN_ID}/artifacts`;
-          await github.rest.checks.create({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            name: 'Cypress Screenshots',
-            head_sha: context.sha,
-            status: 'completed',
-            conclusion: 'success',
-            output: {
-              title: 'Cypress Screenshots',
-              summary: `Cypress test screenshots are available [here](${artifactUrl}).`,
-            },
-          });
-
