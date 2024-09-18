@@ -41,5 +41,12 @@
     "type": "git",
     "url": "https://github.com/jmcudd/react-jdenticon"
   },
-  "keywords": ["react", "javascript", "identicon", "jdenticon", "avatar", "svg"]
+  "keywords": [
+    "react",
+    "javascript",
+    "identicon",
+    "jdenticon",
+    "avatar",
+    "svg"
+  ]
 }
