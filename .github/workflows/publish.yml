@@ -1,0 +1,56 @@
+name: Publish to npm
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to bump (patch, minor, major, or specific version)'
+        required: true
+      dry_run:
+        description: 'Run npm publish with --dry-run'
+        required: false
+        default: 'false'
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '21'
+        registry-url: 'https://registry.npmjs.org'
+    - name: Install dependencies
+      run: npm install
+    - name: Bump version
+      run: npm version ${{ github.event.inputs.version }} --no-git-tag-version
+    - name: Commit version change
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add package.json package-lock.json
+        git commit -m "Bump version to ${{ github.event.inputs.version }}"
+        git push
+    - name: Build the package
+      run: npm run build # Adjust this if your build script is different
+    - name: Dry run publish to npm
+      if: github.event.inputs.dry_run == 'true'
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: npm publish --dry-run
+    - name: Publish to npm
+      if: github.event.inputs.dry_run != 'true'
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      run: npm publish
+    - name: Create GitHub Release
+      if: github.event.inputs.dry_run != 'true'
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ steps.bump_version.outputs.new_version }}
+        release_name: Release v${{ steps.bump_version.outputs.new_version }}
+        draft: false
+        prerelease: false
+

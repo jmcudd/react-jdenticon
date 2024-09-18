@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jdenticon Test</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/prop-types/prop-types.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.1/dist/jdenticon.min.js"></script>
+  <script src="dist/umd/index.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const { createElement } = React;
+      const { createRoot } = ReactDOM;
+      const Jdenticon = window.Jdenticon.default;
+      if (!Jdenticon) {
+        console.error('Jdenticon component is not available');
+      } else {
+        console.log('Jdenticon component is available');
+      }
+      function Example() {
+        return createElement('div', null, [
+          createElement(Jdenticon, { key: '1', size: '48', value: 'Hello World' }),
+          createElement(Jdenticon, { key: '2', size: '48', value: 'React' }),
+          createElement(Jdenticon, { key: '3', size: '48', value: 'GitHub' })
+        ]);
+      }
+      const root = createRoot(document.getElementById('root'));
+      root.render(createElement(Example));
+    });
+  </script>
+</body>
+</html>
+

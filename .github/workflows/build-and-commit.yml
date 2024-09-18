@@ -10,15 +10,42 @@ on:
       - build-and-commit # For testing purposes
   workflow_dispatch:
 jobs:
-  build:
+  check-version:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v4
       with:
-        node-version: '21'  # Change this to the version of Node.js you are using
+        node-version: '21'
+    - name: Get current package version
+      id: current_version
+      run: echo "version=$(jq -r .version package.json)" >> $GITHUB_OUTPUT 
+    - name: Get base branch package version
+      run: |
+        git fetch origin master
+        BASE_VERSION=$(git show origin/master:package.json | jq -r .version)
+        echo "base_version=$BASE_VERSION" >> $GITHUB_OUTPUT 
+      id: base_version
+    - name: Compare versions
+      run: |
+        if [ "${{ steps.current_version.outputs.version }}" == "${{ steps.base_version.outputs.base_version }}" ]; then
+          echo "Package version has not been updated."
+          exit 1
+        else
+          echo "Package version has been updated."
+        fi
+  build:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '21'  
     - name: Install dependencies
       run: npm install
     - name: Build project
@@ -34,4 +61,23 @@ jobs:
           git commit -m "Build: Commit changes after build"
           git push
         fi
-
+  test:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '21' 
+    - name: Install dependencies
+      run: npm install
+    - name: Run Cypress tests
+      run: npm run test
+    - name: Upload screenshots
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
