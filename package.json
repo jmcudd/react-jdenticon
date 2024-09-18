@@ -1,6 +1,6 @@
 {
   "name": "react-jdenticon",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Basic wrapper around jdenticon",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -41,5 +41,12 @@
     "type": "git",
     "url": "https://github.com/jmcudd/react-jdenticon"
   },
-  "keywords": ["react", "javascript", "identicon", "jdenticon", "avatar", "svg"]
+  "keywords": [
+    "react",
+    "javascript",
+    "identicon",
+    "jdenticon",
+    "avatar",
+    "svg"
+  ]
 }
