@@ -10,6 +10,42 @@ on:
       - build-and-commit # For testing purposes
   workflow_dispatch:
 jobs:
+  check-version:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '21'
+    - name: Get current package version
+      id: current_version
+      run: echo "::set-output name=version::$(jq -r .version package.json)"
+    - name: Get base branch package version
+      run: |
+        git fetch origin master
+        BASE_VERSION=$(git show origin/master:package.json | jq -r .version)
+        echo "::set-output name=base_version::$BASE_VERSION"
+      id: base_version
+    - name: Compare versions
+      run: |
+        if [ "${{ steps.current_version.outputs.version }}" == "${{ steps.base_version.outputs.base_version }}" ]; then
+          echo "Package version has not been updated."
+          echo "::set-output name=version_updated::false"
+        else
+          echo "Package version has been updated."
+          echo "::set-output name=version_updated::true"
+        fi
+    - name: Set status check
+      run: |
+        if [ "${{ steps.compare_versions.outputs.version_updated }}" == "false" ]; then
+          echo "Version check failed" > check_version_status.txt
+          exit 1
+        else
+          echo "Version check passed" > check_version_status.txt
+        fi
+      id: set_status
   build:
     runs-on: ubuntu-latest
     steps:
@@ -33,10 +69,8 @@ jobs:
         else
           git commit -m "Build: Commit changes after build"
           git push
-        fi
   test:
     runs-on: ubuntu-latest
-    needs: build
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
