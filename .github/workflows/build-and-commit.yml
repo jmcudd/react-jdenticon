@@ -32,22 +32,13 @@ jobs:
       run: |
         if [ "${{ steps.current_version.outputs.version }}" == "${{ steps.base_version.outputs.base_version }}" ]; then
           echo "Package version has not been updated."
-          echo "::set-output name=version_updated::false"
-        else
-          echo "Package version has been updated."
-          echo "::set-output name=version_updated::true"
-        fi
-    - name: Set status check
-      run: |
-        if [ "${{ steps.compare_versions.outputs.version_updated }}" == "false" ]; then
-          echo "Version check failed" > check_version_status.txt
           exit 1
         else
-          echo "Version check passed" > check_version_status.txt
+          echo "Package version has been updated."
         fi
-      id: set_status
   build:
     runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -71,6 +62,7 @@ jobs:
           git push
   test:
     runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
