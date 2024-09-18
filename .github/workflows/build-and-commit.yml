@@ -77,7 +77,7 @@ jobs:
       run: npm run test
     - name: Upload screenshots
       if: always()
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: cypress-screenshots
         path: cypress/screenshots
