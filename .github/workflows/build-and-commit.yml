@@ -35,7 +35,6 @@ jobs:
           exit 1
         else
           echo "Package version has been updated."
-        fi
   build:
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
@@ -60,7 +59,6 @@ jobs:
         else
           git commit -m "Build: Commit changes after build"
           git push
-        fi
   test:
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request' || github.event.pull_request.merged == true
@@ -75,3 +73,18 @@ jobs:
       run: npm install
     - name: Run Cypress tests
       run: npm run test
+    - name: Upload Cypress screenshots
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: cypress-screenshots
+        path: cypress/screenshots
+        retention-days: 7
+    - name: Upload Cypress videos
+      if: always()
+      uses: actions/upload-artifact@v2
+      with:
+        name: cypress-videos
+        path: cypress/videos
+        retention-days: 7
+
