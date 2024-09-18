@@ -75,18 +75,35 @@ jobs:
       run: npm install
     - name: Run Cypress tests
       run: npm run test
-    - name: Upload Cypress screenshots
+    - name: Upload screenshots
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
         name: cypress-screenshots
         path: cypress/screenshots
-        retention-days: 7
-    - name: Upload Cypress videos
-      if: always()
-      uses: actions/upload-artifact@v3
+  screenshots:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Create check run with screenshot links
+      uses: actions/github-script@v6
       with:
-        name: cypress-videos
-        path: cypress/videos
-        retention-days: 7
+        script: |
+          const { GITHUB_RUN_ID, GITHUB_REPOSITORY } = process.env;
+          const artifactUrl = `https://github.com/${GITHUB_REPOSITORY}/suites/${GITHUB_RUN_ID}/artifacts`;
+          const checkRunId = context.runId;
+          await github.checks.create({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: 'Cypress Screenshots',
+            head_sha: context.sha,
+            status: 'completed',
+            conclusion: 'success',
+            output: {
+              title: 'Cypress Screenshots',
+              summary: `Cypress test screenshots are available [here](${artifactUrl}).`,
+            },
+          });
 
