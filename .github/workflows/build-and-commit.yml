@@ -34,11 +34,5 @@ jobs:
           git commit -m "Build: Commit changes after build"
           git push
         fi
-    - name: Serve test page
-      run: npx http-server -p 8080
     - name: Run Cypress tests
-      uses: cypress-io/github-action@v2
-      with:
-        start: npx http-server -p 8080
-        wait-on: http://localhost:8080
-        config-file: cypress.config.js
+      run: npm run test

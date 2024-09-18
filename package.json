@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "build": "./node_modules/.bin/babel src --out-file index.js",
-    "test": "cypress run"
+    "start-server": "http-server -p 8080",
+    "test": "concurrently -k -s first \"npm run start-server\" \"npm run cypress:run\"",
+    "cypress:run": "cypress run"
   },
   "author": "John Cudd",
   "license": "MIT",
@@ -14,6 +16,7 @@
     "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
+    "concurrently": "^9.0.1",
     "cypress": "^13.14.2",
     "react": "^18.2.0"
   },
@@ -28,5 +31,12 @@
     "type": "git",
     "url": "https://github.com/jmcudd/react-jdenticon"
   },
-  "keywords": ["react", "javascript", "identicon", "jdenticon", "avatar", "svg"]
+  "keywords": [
+    "react",
+    "javascript",
+    "identicon",
+    "jdenticon",
+    "avatar",
+    "svg"
+  ]
 }
