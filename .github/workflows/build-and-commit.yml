@@ -18,7 +18,7 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '21'  # Change this to the version of Node.js you are using
+        node-version: '14'  # Change this to the version of Node.js you are using
     - name: Install dependencies
       run: npm install
     - name: Build project
@@ -34,5 +34,18 @@ jobs:
           git commit -m "Build: Commit changes after build"
           git push
         fi
+  test:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Change this to the version of Node.js you are using
+    - name: Install dependencies
+      run: npm install
     - name: Run Cypress tests
       run: npm run test
+
