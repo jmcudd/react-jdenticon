@@ -1,6 +1,6 @@
 {
   "name": "react-jdenticon",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Basic wrapper around jdenticon",
   "main": "index.js",
   "scripts": {
@@ -14,14 +14,14 @@
     "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
-    "react": "^18.2.0"
+    "react": "^19.1.0"
   },
   "dependencies": {
     "jdenticon": "^3.1.1",
     "prop-types": "^15.8.1"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^19.1.0"
   },
   "repository": {
     "type": "git",
